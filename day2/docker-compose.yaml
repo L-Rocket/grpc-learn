@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  grpc-server:
+    build:
+      context: ./go-docker
+      dockerfile: Dockerfile
+    container_name: grpc-server
+    ports:
+      - "50051:50051"   # 映射 gRPC 端口
+    restart: unless-stopped
+
+  grpc-client:
+    build:
+      context: ./py-docker
+      dockerfile: Dockerfile
+    container_name: grpc-client
+    depends_on:
+      - grpc-server    # 确保服务先启动
+    restart: "no"       # 客户端执行一次就退出
