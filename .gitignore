@@ -1,0 +1,8 @@
+# 所有虚拟环境
+venv/
+.venv/
+
+# Python 缓存
+__pycache__/
+*.pyc
+
